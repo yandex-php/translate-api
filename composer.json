@@ -1,0 +1,18 @@
+{
+  "name": "nkt/yandex-translate",
+  "description": "Wrapper for Yandex.Translate API",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gusakov Nikita",
+      "email": "dev@nkt.me"
+    }
+  ],
+  "require": {
+    "php": "~5.3",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "files": ["src/Translate.php"]
+  }
+}
