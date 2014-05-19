@@ -1,13 +1,13 @@
 <?php
 
-namespace Yandex;
+namespace Yandex\Translate;
 
 /**
  * Translate
  * @author Gusakov Nikita <dev@nkt.me>
  * @link   http://api.yandex.com/translate/doc/dg/reference/translate.xml
  */
-class Translate
+class Translator
 {
     const BASE_URL = 'https://translate.yandex.net/api/v1.5/tr.json/';
     /**
@@ -80,9 +80,10 @@ class Translate
     public function translate($text, $language, $html = false, $options = 1)
     {
         return $this->execute('translate', array(
-            'text'   => $text,
-            'lang'   => $language,
-            'format' => $html ? 'html' : 'plain'
+            'text'    => $text,
+            'lang'    => $language,
+            'format'  => $html ? 'html' : 'plain',
+            'options' => $options
         ));
     }
 
@@ -98,6 +99,6 @@ class Translate
         $url = static::BASE_URL . $uri . '?' . http_build_query($parameters);
         curl_setopt($this->handler, CURLOPT_URL, $url);
 
-        return json_decode(curl_exec($this->handler));
+        return json_decode(curl_exec($this->handler), true);
     }
 }

@@ -13,6 +13,8 @@
     "ext-curl": "*"
   },
   "autoload": {
-    "files": ["src/Translate.php"]
+    "psr-4": {
+      "Yandex\\Translate\\": "src"
+    }
   }
 }
