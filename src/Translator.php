@@ -35,12 +35,7 @@ class Translator
     /**
      * Returns a list of translation directions supported by the service.
      *
-     * @param string $culture If set, the service's response will contain
-     *                        a list of language codes and corresponding names of languages:
-     *                        en - in English
-     *                        ru - in Russian
-     *                        tr - in Turkish
-     *                        uk - in Ukrainian
+     * @param string $culture If set, the service's response will contain a list of language codes
      *
      * @return array
      */
@@ -57,13 +52,15 @@ class Translator
      *
      * @param string $text The text to detect the language for.
      *
-     * @return array
+     * @return string
      */
     public function detect($text)
     {
-        return $this->execute('detect', array(
+        $data = $this->execute('detect', array(
             'text' => $text
         ));
+
+        return $data['en'];
     }
 
     /**
@@ -77,20 +74,24 @@ class Translator
      *
      * @return array
      */
-    public function translate($text, $language, $html = false, $options = 1)
+    public function translate($text, $language, $html = false, $options = 0)
     {
-        return $this->execute('translate', array(
+        $data = $this->execute('translate', array(
             'text'    => $text,
             'lang'    => $language,
             'format'  => $html ? 'html' : 'plain',
             'options' => $options
         ));
+
+        // @TODO: handle source language detecting
+        return new Translation($text, join(' ', (array)$data['text']), $data['lang']);
     }
 
     /**
      * @param string $uri
      * @param array  $parameters
      *
+     * @throws Exception
      * @return array
      */
     protected function execute($uri, array $parameters)
@@ -98,7 +99,11 @@ class Translator
         $parameters['key'] = $this->key;
         $url = static::BASE_URL . $uri . '?' . http_build_query($parameters);
         curl_setopt($this->handler, CURLOPT_URL, $url);
+        $result = json_decode(curl_exec($this->handler), true);
+        if (isset($result['code']) && $result['code'] > 200) {
+            throw new Exception($result['message'], $result['code']);
+        }
 
-        return json_decode(curl_exec($this->handler), true);
+        return $result;
     }
 }
