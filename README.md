@@ -1,5 +1,6 @@
 Yandex Translate API
 ====================
+[![Latest Stable Version](https://poser.pugx.org/nkt/yandex-translate/v/stable.svg)](https://packagist.org/packages/nkt/yandex-translate) [![Total Downloads](https://poser.pugx.org/nkt/yandex-translate/downloads.svg)](https://packagist.org/packages/nkt/yandex-translate) [![Latest Unstable Version](https://poser.pugx.org/nkt/yandex-translate/v/unstable.svg)](https://packagist.org/packages/nkt/yandex-translate) [![License](https://poser.pugx.org/nkt/yandex-translate/license.svg)](https://packagist.org/packages/nkt/yandex-translate)
 
 [Api reference](http://api.yandex.com/translate/doc/dg/concepts/About.xml)
 
