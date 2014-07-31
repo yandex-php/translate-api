@@ -34,6 +34,7 @@ class Translator
 
     /**
      * Returns a list of translation directions supported by the service.
+     * @link http://api.yandex.com/translate/doc/dg/reference/getLangs.xml
      *
      * @param string $culture If set, the service's response will contain a list of language codes
      *
@@ -67,10 +68,10 @@ class Translator
      * Translates the text.
      * @link http://api.yandex.com/translate/doc/dg/reference/translate.xml
      *
-     * @param string $text     The text to be translated.
-     * @param string $language Translation direction (for example, "en-ru" or "ru").
-     * @param bool   $html     Text format, if true - html, otherwise plain.
-     * @param int    $options  Translation options.
+     * @param string|array $text     The text to be translated.
+     * @param string       $language Translation direction (for example, "en-ru" or "ru").
+     * @param bool         $html     Text format, if true - html, otherwise plain.
+     * @param int          $options  Translation options.
      *
      * @return array
      */
@@ -84,7 +85,7 @@ class Translator
         ));
 
         // @TODO: handle source language detecting
-        return new Translation($text, join(' ', (array)$data['text']), $data['lang']);
+        return new Translation($text, $data['text'], $data['lang']);
     }
 
     /**

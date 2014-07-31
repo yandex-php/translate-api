@@ -9,11 +9,11 @@ namespace Yandex\Translate;
 class Translation
 {
     /**
-     * @var string
+     * @var string|array
      */
     protected $source;
     /**
-     * @var string
+     * @var string|array
      */
     protected $result;
 
@@ -23,9 +23,9 @@ class Translation
     protected $language;
 
     /**
-     * @param string $source   The source text
-     * @param string $result   The translation result
-     * @param string $language Translation language
+     * @param string|array $source   The source text
+     * @param string|array $result   The translation result
+     * @param string       $language Translation language
      */
     public function __construct($source, $result, $language)
     {
@@ -35,11 +35,19 @@ class Translation
     }
 
     /**
-     * @return string The source text
+     * @return string|array The source text
      */
     public function getSource()
     {
         return $this->source;
+    }
+
+    /**
+     * @return array|string The result text
+     */
+    public function getResult()
+    {
+        return $this->result;
     }
 
     /**
@@ -63,6 +71,10 @@ class Translation
      */
     public function __toString()
     {
+        if (is_array($this->result)) {
+            return join(' ', $this->result);
+        }
+
         return $this->result;
     }
 } 
