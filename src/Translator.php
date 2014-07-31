@@ -4,7 +4,7 @@ namespace Yandex\Translate;
 
 /**
  * Translate
- * @author Gusakov Nikita <dev@nkt.me>
+ * @author Nikita Gusakov <dev@nkt.me>
  * @link   http://api.yandex.com/translate/doc/dg/reference/translate.xml
  */
 class Translator

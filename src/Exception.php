@@ -1,11 +1,10 @@
 <?php
 
-
 namespace Yandex\Translate;
 
 /**
  * Exception
- * @author Gusakov Nikita <dev@nkt.me>
+ * @author Nikita Gusakov <dev@nkt.me>
  */
 class Exception extends \Exception
 {
