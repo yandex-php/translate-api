@@ -1,10 +1,10 @@
 {
-  "name": "nkt/yandex-translate",
-  "description": "Wrapper for Yandex.Translate API",
+  "name": "yandex/translate-api",
+  "description": "Client for Yandex.Translate API",
   "license": "MIT",
   "authors": [
     {
-      "name": "Gusakov Nikita",
+      "name": "Nikita Gusakov",
       "email": "dev@nkt.me"
     }
   ],
