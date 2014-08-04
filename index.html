@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Translate-api by yandex-php</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Translate-api</h1>
+        <p>Wrapper for Yandex.Translate API</p>
+
+        <p class="view"><a href="https://github.com/yandex-php/translate-api">View the Project on GitHub <small>yandex-php/translate-api</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/yandex-php/translate-api/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/yandex-php/translate-api/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/yandex-php/translate-api">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="yandex-translate-api" class="anchor" href="#yandex-translate-api"><span class="octicon octicon-link"></span></a>Yandex Translate API</h1>
+
+<p><a href="https://packagist.org/packages/nkt/yandex-translate"><img src="https://poser.pugx.org/nkt/yandex-translate/v/stable.svg" alt="Latest Stable Version"></a> <a href="https://packagist.org/packages/nkt/yandex-translate"><img src="https://poser.pugx.org/nkt/yandex-translate/downloads.svg" alt="Total Downloads"></a> <a href="https://packagist.org/packages/nkt/yandex-translate"><img src="https://poser.pugx.org/nkt/yandex-translate/v/unstable.svg" alt="Latest Unstable Version"></a> <a href="https://packagist.org/packages/nkt/yandex-translate"><img src="https://poser.pugx.org/nkt/yandex-translate/license.svg" alt="License"></a></p>
+
+<p><a href="http://api.yandex.com/translate/doc/dg/concepts/About.xml">Api reference</a></p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Add into your <code>composer.json</code>:</p>
+
+<div class="highlight highlight-json"><pre><span class="p">{</span>
+  <span class="nt">"require"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"nkt/yandex-translate"</span><span class="p">:</span> <span class="s2">"~1.0"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="highlight highlight-php"><pre><span class="k">use</span> <span class="nx">Yandex\Translate\Translator</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Yandex\Translate\Exception</span><span class="p">;</span>
+
+<span class="k">try</span> <span class="p">{</span>
+  <span class="nv">$translator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Translator</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
+  <span class="nv">$translation</span> <span class="o">=</span> <span class="nv">$translator</span><span class="o">-&gt;</span><span class="na">translate</span><span class="p">(</span><span class="s1">'Hello world'</span><span class="p">,</span> <span class="s1">'en-ru'</span><span class="p">);</span>
+
+  <span class="k">echo</span> <span class="nv">$translation</span><span class="p">;</span> <span class="c1">// Привет мир</span>
+
+  <span class="k">echo</span> <span class="nv">$translation</span><span class="o">-&gt;</span><span class="na">getSource</span><span class="p">();</span> <span class="c1">// Hello world;</span>
+
+  <span class="k">echo</span> <span class="nv">$translation</span><span class="o">-&gt;</span><span class="na">getSourceLanguage</span><span class="p">()</span> <span class="c1">// en</span>
+  <span class="k">echo</span> <span class="nv">$translation</span><span class="o">-&gt;</span><span class="na">getResultLanguage</span><span class="p">()</span> <span class="c1">// ru</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// handle exception</span>
+<span class="p">}</span>
+
+
+</pre></div>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/yandex-php">yandex-php</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
