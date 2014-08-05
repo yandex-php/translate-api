@@ -1,6 +1,6 @@
 Yandex.Translate API
 ====================
-[![Latest Stable Version](https://poser.pugx.org/yandex-php/translate-api/v/stable.svg)](https://packagist.org/packages/yandex-php/translate-api) [![Total Downloads](https://poser.pugx.org/yandex-php/translate-api/downloads.svg)](https://packagist.org/packages/yandex-php/translate-api) [![Latest Unstable Version](https://poser.pugx.org/yandex-php/translate-api/v/unstable.svg)](https://packagist.org/packages/yandex-php/translate-api) [![License](https://poser.pugx.org/yandex-php/translate-api/license.svg)](https://packagist.org/packages/yandex-php/translate-api)
+[![Latest Stable Version](https://poser.pugx.org/yandex/translate-api/v/stable.svg)](https://packagist.org/packages/yandex/translate-api) [![Total Downloads](https://poser.pugx.org/yandex/translate-api/downloads.svg)](https://packagist.org/packages/yandex/translate-api) [![Latest Unstable Version](https://poser.pugx.org/yandex/translate-api/v/unstable.svg)](https://packagist.org/packages/yandex/translate-api) [![License](https://poser.pugx.org/yandex/translate-api/license.svg)](https://packagist.org/packages/yandex/translate-api)
 
 [Api reference](http://api.yandex.com/translate/doc/dg/concepts/About.xml)
 
@@ -17,7 +17,7 @@ Add into your `composer.json`:
 ```json
 {
   "require": {
-    "yandex-php/translate-api": "~1.0"
+    "yandex/translate-api": "~1.0"
   }
 }
 ```
