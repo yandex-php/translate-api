@@ -75,6 +75,6 @@ class Translation
             return join(' ', $this->result);
         }
 
-        return $this->result;
+        return (string) $this->result;
     }
-} 
+}
