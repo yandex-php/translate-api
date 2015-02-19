@@ -61,7 +61,7 @@ class Translator
             'text' => $text
         ));
 
-        return $data['en'];
+        return $data['lang'];
     }
 
     /**
