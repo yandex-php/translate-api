@@ -100,7 +100,13 @@ class Translator
         $parameters['key'] = $this->key;
         $url = static::BASE_URL . $uri . '?' . http_build_query($parameters);
         curl_setopt($this->handler, CURLOPT_URL, $url);
-        $result = json_decode(curl_exec($this->handler), true);
+        
+        $remoteResult = curl_exec($this->handler);
+        if ($remoteResult === false) {
+            throw new Exception(curl_error($this->handler), curl_errno($this->handler));
+        }
+
+        $result = json_decode($remoteResult, true);
         if (isset($result['code']) && $result['code'] > 200) {
             throw new Exception($result['message'], $result['code']);
         }
