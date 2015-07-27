@@ -17,7 +17,7 @@ Add into your `composer.json`:
 ```json
 {
   "require": {
-    "yandex/translate-api": "~1.0"
+    "yandex/translate-api": "~1.5.x"
   }
 }
 ```
@@ -39,8 +39,8 @@ try {
 
   echo $translation->getSource(); // Hello world;
 
-  echo $translation->getSourceLanguage() // en
-  echo $translation->getResultLanguage() // ru
+  echo $translation->getSourceLanguage(); // en
+  echo $translation->getResultLanguage(); // ru
 } catch (Exception $e) {
   // handle exception
 }
@@ -49,4 +49,4 @@ try {
 License
 -------
 
-MIT
+[MIT](LICENSE)
