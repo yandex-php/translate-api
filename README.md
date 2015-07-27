@@ -17,7 +17,7 @@ Add into your `composer.json`:
 ```json
 {
   "require": {
-    "yandex/translate-api": "~1.5.x"
+    "yandex/translate-api": "1.5.x"
   }
 }
 ```
