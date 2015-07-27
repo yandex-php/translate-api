@@ -107,7 +107,19 @@ class Translator
         }
 
         $result = json_decode($remoteResult, true);
-        if (isset($result['code']) && $result['code'] > 200) {
+        if (!$result) {
+            $errorMessage = self::MESSAGE_UNKNOWN_ERROR;
+            if (version_compare(PHP_VERSION, '5.3', '>=')) {
+                if (json_last_error() !== JSON_ERROR_NONE) {
+                    if (version_compare(PHP_VERSION, '5.5', '>=')) {
+                        $errorMessage = json_last_error_msg();
+                    } else {
+                        $errorMessage = self::MESSAGE_JSON_ERROR;
+                    }
+                }
+            }
+            throw new Exception(sprintf('%s: %s', self::MESSAGE_INVALID_RESPONSE, $errorMessage));
+        } elseif (isset($result['code']) && $result['code'] > 200) {
             throw new Exception($result['message'], $result['code']);
         }
 
