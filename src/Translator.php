@@ -10,6 +10,10 @@ namespace Yandex\Translate;
 class Translator
 {
     const BASE_URL = 'https://translate.yandex.net/api/v1.5/tr.json/';
+    const MESSAGE_UNKNOWN_ERROR = 'Unknown error';
+    const MESSAGE_JSON_ERROR = 'JSON parse error';
+    const MESSAGE_INVALID_RESPONSE = 'Invalid response from service';
+
     /**
      * @var string
      */
