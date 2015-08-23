@@ -102,8 +102,9 @@ class Translator
     protected function execute($uri, array $parameters)
     {
         $parameters['key'] = $this->key;
-        $url = static::BASE_URL . $uri . '?' . http_build_query($parameters);
-        curl_setopt($this->handler, CURLOPT_URL, $url);
+        curl_setopt($this->handler, CURLOPT_URL, static::BASE_URL . $uri);
+        curl_setopt($this->handler, CURLOPT_POST, true);
+        curl_setopt($this->handler, CURLOPT_POSTFIELDS, http_build_query($parameters));
         
         $remoteResult = curl_exec($this->handler);
         if ($remoteResult === false) {
