@@ -105,6 +105,8 @@ class Translator
         curl_setopt($this->handler, CURLOPT_URL, static::BASE_URL . $uri);
         curl_setopt($this->handler, CURLOPT_POST, true);
         curl_setopt($this->handler, CURLOPT_POSTFIELDS, http_build_query($parameters));
+        curl_setopt($this->handler, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($this->handler, CURLOPT_SSL_VERIFYPEER, 0);
         
         $remoteResult = curl_exec($this->handler);
         if ($remoteResult === false) {
