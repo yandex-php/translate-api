@@ -109,12 +109,16 @@ class Translator
 
         if (isset($parameters['text']) && is_array($parameters['text'])) {
             /*
-              https://tech.yandex.ru/translate/doc/dg/reference/translate-docpage/#param_text
-              Из документации: "В запросе можно использовать несколько параметров text"
-              Но Яндекс принимает именно несколько text=, а не PHP-интерпретацию в формате text[]=
+              https://tech.yandex.com/translate/doc/dg/reference/translate-docpage/#param_text (ENG)
+              https://tech.yandex.ru/translate/doc/dg/reference/translate-docpage/#param_text (RUS)
+              
+              According to documention: "You can use multiple text parameters in a request."
+              Yandex can receive only in format text=abc&text=def&text=klm&....&text=zzz
+              But PHP transform array to query string in format: text[1]=abc&text[2]=def&text[3]=klm&....&text[i]=zzz
+              For Yandex it is incorrect format of query string
              */
 
-            // ишем куски &text[индекс]= и меняем на просто &text=
+            // search substring "&text[index]=" and replace with "&text="
             $post = preg_replace('#(^|&)text%5B[0-9]+%5D=#', '$1text=', $post);
         }
 
