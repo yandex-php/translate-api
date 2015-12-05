@@ -104,8 +104,26 @@ class Translator
         $parameters['key'] = $this->key;
         curl_setopt($this->handler, CURLOPT_URL, static::BASE_URL . $uri);
         curl_setopt($this->handler, CURLOPT_POST, true);
-        curl_setopt($this->handler, CURLOPT_POSTFIELDS, http_build_query($parameters));
-        
+
+        $post = http_build_query($parameters);
+
+        if (isset($parameters['text']) && is_array($parameters['text'])) {
+            /*
+              https://tech.yandex.com/translate/doc/dg/reference/translate-docpage/#param_text (ENG)
+              https://tech.yandex.ru/translate/doc/dg/reference/translate-docpage/#param_text (RUS)
+              
+              According to documention: "You can use multiple text parameters in a request."
+              Yandex can receive only in format text=abc&text=def&text=klm&....&text=zzz
+              But PHP transform array to query string in format: text[1]=abc&text[2]=def&text[3]=klm&....&text[i]=zzz
+              For Yandex it is incorrect format of query string
+             */
+
+            // search substring "&text[index]=" and replace with "&text="
+            $post = preg_replace('#(^|&)text%5B[0-9]+%5D=#', '$1text=', $post);
+        }
+
+        curl_setopt($this->handler, CURLOPT_POSTFIELDS, $post);
+
         $remoteResult = curl_exec($this->handler);
         if ($remoteResult === false) {
             throw new Exception(curl_error($this->handler), curl_errno($this->handler));
