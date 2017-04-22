@@ -77,7 +77,7 @@ class Translator
      * @param bool         $html     Text format, if true - html, otherwise plain.
      * @param int          $options  Translation options.
      *
-     * @return array
+     * @return \Yandex\Translate\Translation
      */
     public function translate($text, $language, $html = false, $options = 0)
     {
@@ -96,7 +96,7 @@ class Translator
      * @param string $uri
      * @param array  $parameters
      *
-     * @throws Exception
+     * @throws \Exception
      * @return array
      */
     protected function execute($uri, array $parameters)
@@ -105,7 +105,8 @@ class Translator
         curl_setopt($this->handler, CURLOPT_URL, static::BASE_URL . $uri);
         curl_setopt($this->handler, CURLOPT_POST, true);
         curl_setopt($this->handler, CURLOPT_POSTFIELDS, http_build_query($parameters));
-        
+		curl_setopt($this->handler, CURLOPT_SSL_VERIFYPEER, false);
+
         $remoteResult = curl_exec($this->handler);
         if ($remoteResult === false) {
             throw new Exception(curl_error($this->handler), curl_errno($this->handler));
