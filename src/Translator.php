@@ -25,15 +25,26 @@ class Translator
     protected $handler;
 
     /**
+     * Options:
+     * - `sslVerifyPeer`: true/false (defaults to true)
+     *
      * @link http://api.yandex.com/key/keyslist.xml Get a free API key on this page.
      *
      * @param string $key The API key
+     * @param array $options Options array
      */
-    public function __construct($key)
+    public function __construct($key, array $options = [])
     {
         $this->key = $key;
         $this->handler = curl_init();
         curl_setopt($this->handler, CURLOPT_RETURNTRANSFER, true);
+
+        $options += [
+            'sslVerifyPeer' => true,
+        ];
+        if ($options['sslVerifyPeer']) {
+            curl_setopt($this->handler, CURLOPT_SSL_VERIFYPEER, false);
+        }
     }
 
     /**
@@ -105,7 +116,6 @@ class Translator
         curl_setopt($this->handler, CURLOPT_URL, static::BASE_URL . $uri);
         curl_setopt($this->handler, CURLOPT_POST, true);
         curl_setopt($this->handler, CURLOPT_POSTFIELDS, http_build_query($parameters));
-		curl_setopt($this->handler, CURLOPT_SSL_VERIFYPEER, false);
 
         $remoteResult = curl_exec($this->handler);
         if ($remoteResult === false) {
